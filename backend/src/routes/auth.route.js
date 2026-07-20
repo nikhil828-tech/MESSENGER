@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-router.post("/signup", (req, res) => {
+router.get("/signup", (req, res) => {
   // Handle user signup logic here
   res.send("Signup endpoint");
 });
