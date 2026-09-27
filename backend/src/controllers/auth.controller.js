@@ -113,7 +113,7 @@ export const updateProfile = async(req,res) => {
             { new: true }
         ).select("-password");
 
-        res.status(200).json(updatedUser);
+        return res.status(200).json(updatedUser);
     }catch(error){
         console.error("Error in updateProfile controller:", error);
         res.status(500).json({message:"Internal server error"});

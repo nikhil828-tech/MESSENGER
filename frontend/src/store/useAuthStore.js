@@ -59,5 +59,16 @@ export const useAuthStore = create((set) => ({
         }
         
         
+    },
+
+    updateProfile: async(data) =>{
+        try {
+            const res = await ax.put("/auth/update-profile",data);
+            set({authUser:res.data});
+            toast.success("profile updated successfully");
+        } catch (error) {
+            console.log("error in update profile");
+            toast.error("Error try Again!");
+        }
     }
 }));

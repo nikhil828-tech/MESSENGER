@@ -9,27 +9,28 @@ import NoConversationPlaceholder from '../components/NoConversationPlaceholder';
 
 
 function ChatePage() {
-  const { activeTab, selectedUser} = useChatStore();
+  const { activeTab, selectedUser } = useChatStore();
+
   return (
-    <div className='relative w-full max-w-6xl h-[800px]'>
+   <div className="relative w-full max-w-6xl h-[800px]">
       <BorderAnimatedContainer>
-        {/*LEFT SIDE */}
-        <div className='w-80 bg-slate-800/50 backdrop-blur-sm flex flex-col'>
-            <ProfileHeader />
-            <ActiveTabSwitch/>
+        {/* LEFT SIDE */}
+        <div className="w-80 bg-slate-800/50 backdrop-blur-sm flex flex-col">
+          <ProfileHeader />
+          <ActiveTabSwitch />
 
-            <div className='flex-1 overflow-yauto p-4 space-y-2'>
-              {activeTab == "chats" ? <ChatsList/>:<ContactList/>}
-            </div>
+          <div className="flex-1 overflow-y-auto p-4 space-y-2">
+            {activeTab === "chats" ? <ChatsList /> : <ContactList />}
+          </div>
         </div>
-        {/* RIGHT SIDE */}
-        <div className='flex-1 flex flex-col bg-slate-900 backdrop-blir-sm'>
-          {selectedUser ? <ChatContainer/> : <NoConversationPlaceholder/>}
 
+        {/* RIGHT SIDE */}
+        <div className="flex-1 flex flex-col bg-slate-900/50 backdrop-blur-sm">
+          {selectedUser ? <ChatContainer /> : <NoConversationPlaceholder />}
         </div>
       </BorderAnimatedContainer>
     </div>
-  )
+  );
 }
 
 export default ChatePage
