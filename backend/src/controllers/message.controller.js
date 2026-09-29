@@ -1,3 +1,4 @@
+import cloudinary from "../lib/cloudinary.js";
 import Message from "../models/Message.js";
 import User from "../models/User.js";
 
@@ -39,8 +40,8 @@ export const getMessageById = async (req, res) => {
 export const sendMessage = async (req, res) => {
     try {
         const { text, image } = req.body;
-        const { id: receiverId } = req.params;
-        const senderId = req.user._id;
+        const { id: receiver } = req.params;
+        const sender = req.user._id;
 
         if(!text && !image) {
             return res.status(400).json({ message: "Message text or image is required" });
@@ -48,13 +49,15 @@ export const sendMessage = async (req, res) => {
 
         let imageUrl;
         if (image) {
+            
             const uploadResponse = await cloudinary.uploader.upload(image);
             imageUrl = uploadResponse.secure_url;
         }
+       
 
         const newMessage = new Message({
-            sender: senderId,
-            receiver: receiverId,
+            sender: sender,
+            receiver: receiver,
             text,
             image: imageUrl
         });
@@ -66,7 +69,7 @@ export const sendMessage = async (req, res) => {
         res.status(201).json(newMessage);
     } catch (error) {
         console.error("Error in sendMessage:", error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Internal controler server error" });
     }
 };
 

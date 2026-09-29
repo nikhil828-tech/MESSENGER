@@ -17,7 +17,7 @@ function App() {
     checkAuth()
   }, [checkAuth]);
 
-  console.log({ authUser });
+  
 
   if(isCheckingAuth) return <PageLoader/>
   return (
@@ -46,7 +46,7 @@ function App() {
 
       </div>
 
-      <div className="relative z-10 min-h-screen p-4 overflow-hidden">
+      {/* <div className="relative z-10 min-h-screen p-4 overflow-hidden"> */}
 
         <Routes>
           <Route path="/" element={authUser ? <ChatePage /> : <Navigate to={"/login"} />} />
@@ -56,7 +56,7 @@ function App() {
         <Toaster
         position='top-right'
         />
-      </div>
+      {/* //</div> */}
     </div>
 
   )
