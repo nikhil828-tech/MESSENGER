@@ -60,13 +60,13 @@ export const useChatStore = create((set,get) => ({
 
     sendMessage : async(messageData) => {
         const {selectedUser ,messages} = get();
-        const {authuser } = useAuthStore.getState();
+        const {authUser } = useAuthStore.getState();
 
         const tempId = `temp-${Date.now()}`;
 
         const optimisticMessage = {
             _id:tempId,
-            sender:authuser._id,
+            sender:authUser._id,
             receiver: selectedUser._id,
             text: messageData.text,
             image: messageData.image,
