@@ -8,13 +8,17 @@ import MessagesLoadingSkeleton from './MessagesLoadingSkeleton';
 
 
 function ChatContainer() {
-  const{selectedUser , getMessagesByUserId,messages,isMessagesLoading} = useChatStore();
+  const{selectedUser , getMessagesByUserId,messages,isMessagesLoading,subscibeToMessages,unsubscibeFromMessages} = useChatStore();
   const {authUser} = useAuthStore();
   const messageEndRef = useRef(null)
 
   useEffect(() => {
     getMessagesByUserId(selectedUser._id);
-  },[selectedUser,getMessagesByUserId]);
+    subscibeToMessages();
+
+    //clean up
+    return () => unsubscibeFromMessages();
+  },[selectedUser,getMessagesByUserId,subscibeToMessages,unsubscibeFromMessages]);
 
   useEffect(() => {
     if(messageEndRef.current){
