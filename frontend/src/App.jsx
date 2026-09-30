@@ -1,4 +1,3 @@
-import React from 'react'
 import { Navigate, Route, Routes } from "react-router";
 //import { BrowserRouter, Route } from 'react-router-dom';
 import ChatePage from './pages/ChatePage';
